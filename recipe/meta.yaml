@@ -13,7 +13,8 @@ source:
   '{{ hash_type }}': '{{ hash_value }}'
 
 build:
-  number: 0
+  noarch: python
+  number: 1
   entry_points:
     - MPreadevents = maltpynt.read_events:main
     - MPlcurve = maltpynt.lcurve:main
@@ -30,10 +31,11 @@ build:
     - MPscrunchlc = maltpynt.lcurve:scrunch_main
     - MPsumfspec = maltpynt.sum_fspec:main
     - MP2xspec = maltpynt.save_as_xspec:main
-  script: python setup.py install --offline --single-version-externally-managed --record=record.txt
+  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
-  build:
+  host:
+    - pip
     - python
     - setuptools
   run:
